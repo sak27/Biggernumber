@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
     int number = r.nextInt();
     int number2 = r.nextInt();
     int score;
+    int lives = 5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     public void on_button_click(View view) {
         TextView tv = this.findViewById(R.id.textView);
         TextView point = this.findViewById(R.id.textView3);
+        TextView life = this.findViewById(R.id.textView4);
 
         if (number > number2) {
             tv.setText("Congratulation!");
@@ -43,6 +47,16 @@ public class MainActivity extends AppCompatActivity {
             point.setText("Score: " + score);
         } else {
             tv.setText("Oops! Wrong");
+            lives--;
+            life.setText("Lives " + lives);
+            if (lives == 0) {
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "This is a message displayed in a Toast",
+                        Toast.LENGTH_SHORT);
+
+                toast.show();
+
+            }
             initialising();
         }
     }
@@ -50,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     public void on_button_click2(View view){
         TextView tv = this.findViewById(R.id.textView);
         TextView point = this.findViewById(R.id.textView3);
+        TextView life = this.findViewById(R.id.textView4);
         if (number2 > number)
         {
             tv.setText("Congratulation!");
@@ -60,7 +75,19 @@ public class MainActivity extends AppCompatActivity {
         } else
         {
             tv.setText("Oops! Wrong");
+            lives--;
+            life.setText("Lives " + lives);
+            if (lives == 0)
+            {
+                Toast toast = Toast.makeText(getApplicationContext(),
+                        "Game Over!!!!",
+                        Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 20, 20);
 
+
+                toast.show();
+
+            }
             initialising();
         }
 
